@@ -1,0 +1,36 @@
+{%load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cli.css' %}">
+   
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'artist' %}">Home</a></li>
+                
+                
+            </ul>
+            
+
+            <div class="container">
+                
+                {% if user.is_authenticated %}
+                <span>Hello {{ request.user }}</span>
+                {% endif %}
+                <span><a href="{% url 'logout' %}">Logout</a> </span>
+              
+                <!-- Add user profile link or avatar here -->
+                </div>
+            </div>
+            </nav>
+        </header>
+
+  <h2>Create Artist</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Client</button>
+  </form>
+

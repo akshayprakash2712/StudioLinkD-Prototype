@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        
+            header {
+                background-color: #333;
+                color: #fff;
+                padding: 10px 0;
+            }
+            
+            nav ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            nav ul li {
+                display: inline;
+                margin-right: 20px;
+            }
+            
+            nav ul li:last-child {
+                margin-right: 0;
+            }
+            
+            nav ul li a {
+                text-decoration: none;
+                color: #fff;
+                font-weight: bold;
+                transition: color 0.3s;
+            }
+            
+            nav ul li a:hover {
+                color: #ff6600; /* Change the color on hover */
+            }
+            .container {
+                width: 100%; /* Adjust container width as needed */
+                text-align: right; /* Align content to the right */
+            }
+            
+            .profile-pic {
+                display: inline-block; /* Display the profile picture as an inline block */
+                
+            }
+            .custom-profile-pic {
+                width: 100px; /* Set the desired width */
+                height: 100px; /* Set the desired height */
+            }
+            
+
+    </style>
+    <!-- Add your CSS and other meta tags here -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#about">About</a></li>
+                
+            </ul>
+            
+
+            <div class="container">
+                
+                {% if user.is_authenticated %}
+                <span>Hello {{ request.user }}</span>
+                {% endif %}
+                <span><a href="{% url 'logout' %}">Logout</a> </span>
+              
+                <!-- Add user profile link or avatar here -->
+                </div>
+            </div>
+            </nav>
+        </header>
+<h2> User Profile </h2>
+This is a login page for different Userss<br><br>
+<a class="ml-2"href="{% url 'register' %}">Sign in</a>
+</body>

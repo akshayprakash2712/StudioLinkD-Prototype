@@ -1,0 +1,65 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/rad.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'radio' %}">Home</a></li>
+                
+                
+            </ul>
+            
+
+            <div class="container">
+                
+                {% if user.is_authenticated %}
+                <span>Hello {{ request.user }}</span>
+                {% endif %}
+                <span><a href="{% url 'logout' %}">Logout</a> </span>
+              
+                <!-- Add user profile link or avatar here -->
+            </div>
+            
+            </nav>
+        </header>
+        <br><br>
+    <div class="float-right ">
+        <div class="card-border">
+        <div class="card" style="width: 18rem;">
+            {%if  user.image %}
+                <img src="{{ user.image.url }}" class="card-img-top" alt="..." width="150">
+           {%endif%}
+            <div class="card-body">
+           
+              <h5 class="card-title">Hello </h5>
+         
+              <p class="card-text">Your are now a Radio channel user.</p>
+              <a href="{% url 'edit' %}" class="btn btn-primary">My Profile</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
+       
+
+<div class="body">
+        <div class="card" style="width: 18rem;">
+    
+             <div class="card-body">
+                {%if user.is_authenticated %}
+                <h1 class="card-title">Welcome {{user}}</h1>
+                {%endif%}
+                    <p class="card-text">This is a page for Radio Channel.</p>
+                        
+            </div>
+         </div>
+</div>
+<br>
+

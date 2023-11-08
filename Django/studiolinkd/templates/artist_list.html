@@ -1,0 +1,65 @@
+{%load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/client.css' %}">
+   
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'artist' %}">Home</a></li>
+                
+                
+            </ul>
+            
+
+            <div class="container">
+                
+                {% if user.is_authenticated %}
+                <span>Hello {{ request.user }}</span>
+                {% endif %}
+                <span><a href="{% url 'logout' %}">Logout</a> </span>
+              
+                <!-- Add user profile link or avatar here -->
+                </div>
+            </div>
+            </nav>
+        </header>
+
+  <h2>Artist List</h2>   
+    
+  
+  {% for i in venues%}
+  <ul>
+    <li>
+      <h3>Name : {{ i.name }}</h3>
+      <h5>Type : {{i.type}}<h5>
+      <h5>Location : {{i.location}}<h5>
+        {% if i.image %}
+         Profile Pic : <img src="{{ i.image.url }}" alt="{{ i.name }}" width="150">
+        {% endif %}
+    </li>
+     
+  </ul>
+  {% endfor %}
+
+<br>
+
+    {% if venues.has_previous %}
+
+     <a class="page-link" href="?page=1">&laquo First</a>
+    <a class="page-link" href="?page={{ venues.previous_page_number}}">Previous</a>
+    {% endif %}
+ 
+
+{% if venues.has_next %}
+<a href="?page={{ venues.next_page_number }}">next</a></li>
+<a href="?page={{ venues.paginator.num_pages}}">last &raquo</a></li>
+{% endif %}
+<br><br>
+page {{ venues.number }} of {{ venues.paginator.num_pages}} <br><br>
+
+  <a href="{% url 'add_artist' %}">Create New Artist</a>  <!-- Link to the artist creation page -->
+
+ 
